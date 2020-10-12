@@ -11,9 +11,13 @@ jobs:
     
     - uses: actions/checkout@v1
     
-    - uses: chrisdickinson/setup-yq@latest
-    - name: Show folks how to run YQ:
+    - name: yq - portable yaml processor
+      uses: mikefarah/yq@3.4.0
+    
+    - name: Replace
       run: |
-        yq --help
-        
+        cat edit.yaml
+        yq w -i -d 1 edit.yaml spec.template.spec.containers.image OUT_NEW_VALUE
+        cat edit.yaml
+
     
