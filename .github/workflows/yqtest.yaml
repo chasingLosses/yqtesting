@@ -11,8 +11,10 @@ jobs:
     
     - uses: actions/checkout@v1
     
-    - name: yq - portable yaml processor
-      uses: mikefarah/yq@3.4.0
+    - name: yq setup
+      run: | 
+        sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/3.3.0/yq_linux_amd64
+        sudo chmod +x /usr/local/bin/yq
     
     - name: Replace
       run: |
