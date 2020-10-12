@@ -15,9 +15,11 @@ jobs:
       run: | 
         sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/3.3.0/yq_linux_amd64
         sudo chmod +x /usr/local/bin/yq
+        echo "CLUSTER-NAME=TestCluster" >> $GITHUB_ENV 
     
     - name: Replace
       run: |
+        
         cat edit.yaml
         yq w -i edit.yaml "spec.template.spec.containers[0].args[+]" '--cluster-name=${{ env.CLUSTER-NAME }}'
         yq w -i edit.yaml "spec.template.spec.containers[0].args[+]" "SECOND_NEW_VALUE"
