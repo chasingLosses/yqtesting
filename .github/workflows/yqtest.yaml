@@ -1,0 +1,19 @@
+name: Create Cluster
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+    - uses: actions/checkout@v1
+    
+    - uses: chrisdickinson/setup-yq@latest
+    - name: Show folks how to run YQ:
+      run: |
+        yq --help
+        
+    
