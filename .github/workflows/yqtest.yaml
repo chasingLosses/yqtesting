@@ -19,7 +19,9 @@ jobs:
     - name: Replace
       run: |
         cat edit.yaml
-        yq w -i -d 1 edit.yaml spec.template.spec.containers.image OUT_NEW_VALUE
+        yq w -i edit.yaml "spec.template.spec.containers.args[+]" "OUT_NEW_VALUE"
+        yq w -i edit.yaml "spec.template.spec.containers.args[+]" "SECOND_NEW_VALUE"
+        yq w -i edit.yaml "spec.template.spec.containers.args[+]" "THIRD_NEW_VALUE"
         cat edit.yaml
 
     
