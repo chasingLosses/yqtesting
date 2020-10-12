@@ -21,7 +21,7 @@ jobs:
       run: |
         
         cat edit.yaml
-        yq w -i edit.yaml "spec.template.spec.containers[0].args[+]" '--cluster-name=${{ env.CLUSTER-NAME }}'
+        yq w -i -- edit.yaml "spec.template.spec.containers[0].args[+]" "--cluster-name=${{ env.CLUSTER-NAME }}"
         yq w -i edit.yaml "spec.template.spec.containers[0].args[+]" "SECOND_NEW_VALUE"
         yq w -i edit.yaml "spec.template.spec.containers[0].args[+]" "THIRD_NEW_VALUE"
         cat edit.yaml
